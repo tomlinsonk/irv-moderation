@@ -20,6 +20,7 @@ def fast_continuous_plurality_voter_dsn(cand_pos, voter_dsn):
 
     return cand_idxs[np.argmax(votes)]
 
+
 def fast_continuous_irv_voter_dsn(cand_pos, voter_dsn):
     k = len(cand_pos)
 
@@ -56,8 +57,6 @@ def simulate_1d_custom_dsn_winner_distribution_helper(args):
 
         most_moderate = np.argmin(extremities)
         most_extreme = np.argmax(extremities)
-
-        # warning: median is only a candidate with odd k
         median = np.median(cand_pos)
 
         results[k, trial] = cand_pos[plurality_winner], cand_pos[irv_winner], cand_pos[most_moderate], cand_pos[most_extreme], median

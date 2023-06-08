@@ -127,7 +127,7 @@ def plot_k_3_4_5_winner_distributions():
     plt.close()
 
 
-def plot_winner_interval_single_pane():
+def plot_winner_intervals():
     all_irv_winners = dict()
     all_plurality_winners = dict()
 
@@ -212,31 +212,6 @@ def plot_winner_interval_single_pane():
         plt.close()
 
 
-def plot_plurality_dsns(k_string='k-2-20'):
-    name = f'uniform-{k_string}'
-
-    colors = ["#f8cf6e", "#3c9cff", "#ee504e", "#01b06a", "#540105"]
-    systems = ['plurality', 'irv', 'most moderate', 'most extreme', 'median']
-    plurality_idx, irv_idx, moderate_idx, extreme_idx, median_idx = range(5)
-
-    with open(f'results/{name}-dsn-winner-positions-100000-trials.pickle', 'rb') as f:
-        ks, dsn, trials, all_results = pickle.load(f)
-
-    plurality_winners = {k: [all_results[k, trial][plurality_idx] for trial in range(trials)] for k in ks}
-    irv_winners = {k: [all_results[k, trial][irv_idx] for trial in range(trials)] for k in ks}
-    moderate_winners = {k: [all_results[k, trial][moderate_idx] for trial in range(trials)] for k in ks}
-    extreme_winners = {k: [all_results[k, trial][extreme_idx] for trial in range(trials)] for k in ks}
-    median_winners = {k: [all_results[k, trial][median_idx] for trial in range(trials)] for k in ks}
-
-    out_dir = f'plots/moderation/plurality-dsns/'
-    os.makedirs(out_dir, exist_ok=True)
-    for k in ks:
-        plt.title(f'$k={k}$')
-        plt.hist(plurality_winners[k], bins=100)
-        plt.savefig(f'{out_dir}/plurality-dsn-k-{k}.pdf', bbox_inches='tight')
-
-        plt.close()
-
 if __name__ == '__main__':
     # allow keyboard interrupt to close pyplot
     import signal
@@ -244,6 +219,6 @@ if __name__ == '__main__':
 
     os.makedirs('plots/', exist_ok=True)
 
-    plot_winner_interval_single_pane()
+    plot_winner_intervals()
     plot_irv_plurality_scatter()
     plot_k_3_4_5_winner_distributions()
