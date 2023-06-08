@@ -37,5 +37,5 @@ python3 plot.py
 
 To rerun simulations:
 ```
-python3 irv --threads [THREADS]
+python3 irv.py --threads [THREADS]
 ```
