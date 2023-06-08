@@ -4,11 +4,6 @@ import pickle
 from multiprocessing import Pool
 
 import numpy as np
-
-
-########################
-##### DISCRETE IRV #####
-########################
 from numpy.random import default_rng
 from scipy import stats
 from tqdm import tqdm

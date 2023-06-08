@@ -244,6 +244,6 @@ if __name__ == '__main__':
 
     os.makedirs('plots/', exist_ok=True)
 
-    # plot_winner_interval_single_pane()
+    plot_winner_interval_single_pane()
     plot_irv_plurality_scatter()
-    # plot_k_3_4_5_winner_distributions()
+    plot_k_3_4_5_winner_distributions()
