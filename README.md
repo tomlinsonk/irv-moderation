@@ -11,6 +11,7 @@ We have included all code for running simulations, all code for generating plots
 - `results`: compressed simulation results (526 MB)
 - `irv.py`: code for running IRV and plurality simulations
 - `plot.py`: code for plotting simulation results
+- `volumes.nb`: Mathematica notebook for generating winner region figures
 
 ## Compute details
 Simulations run in 15 minutes on 100 cores of a server with Intel Xeon Gold 6254 CPUs and 1.5TB RAM (but would run fine on a more modest machine with more time).
