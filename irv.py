@@ -1,8 +1,6 @@
 import argparse
 import os
 import pickle
-import random
-from collections import Counter, defaultdict
 from multiprocessing import Pool
 
 import numpy as np
@@ -11,12 +9,8 @@ import numpy as np
 ########################
 ##### DISCRETE IRV #####
 ########################
-import scipy
-from matplotlib import pyplot as plt
-from matplotlib.widgets import Slider
 from numpy.random import default_rng
 from scipy import stats
-from scipy.spatial import Voronoi, ConvexHull, voronoi_plot_2d
 from tqdm import tqdm
 
 
@@ -30,7 +24,6 @@ def fast_continuous_plurality_voter_dsn(cand_pos, voter_dsn):
     votes = np.diff(cdfs)
 
     return cand_idxs[np.argmax(votes)]
-
 
 def fast_continuous_irv_voter_dsn(cand_pos, voter_dsn):
     k = len(cand_pos)
