@@ -66,7 +66,7 @@ def plot_irv_plurality_scatter():
 
 
 
-def plot_k_3_4_5_winner_distributions():
+def plot_k_3_4_5_100_winner_distributions():
     f_name = 'results/uniform-small-k-1000000-trials-dsn-winner-positions-1000000-trials.pickle'
 
     with open(f_name, 'rb') as f:
@@ -75,10 +75,10 @@ def plot_k_3_4_5_winner_distributions():
     outdir = 'plots'
     os.makedirs(outdir, exist_ok=True)
 
-    irv_winner_positions = {k: np.array([all_results[k, trial][1] for trial in range(trials)]) for k in [3, 4, 5] }
     plurality_winner_positions = {k: np.array([all_results[k, trial][0] for trial in range(trials)]) for k in [3, 4, 5] }
+    irv_winner_positions = {k: np.array([all_results[k, trial][1] for trial in range(trials)]) for k in [3, 4, 5] }
 
-    fig, axes = plt.subplots(2, 3, figsize=(15, 5), sharey='row', sharex='col')
+    fig, axes = plt.subplots(2, 4, figsize=(15, 5), sharey='row', sharex='col')
     p1 = lambda x: 4 * x + x**2 / 2
     p2 = lambda x: - 3 / 2 + 13 * x - 13*x**2
 
@@ -122,7 +122,25 @@ def plot_k_3_4_5_winner_distributions():
         axes[1, col].axvline(1 / 6, ls='dashed', color='black', lw=1, zorder=0)
         axes[1, col].axvline(5 / 6, ls='dashed', color='black', lw=1, zorder=0)
 
-    plt.savefig('plots/k-3-4-5-winner-distributions-bars.pdf', bbox_inches='tight')
+
+    trials = 100000
+    with open(f'results/uniform-k-high-dsn-winner-positions-100000-trials.pickle', 'rb') as f:
+        high_ks, _, _, k_high_results = pickle.load(f)
+
+    k_high_plurality = {k: np.array([k_high_results[k, trial][0] for trial in range(trials)]) for k in high_ks}
+    k_high_irv = {k: np.array([k_high_results[k, trial][1] for trial in range(trials)]) for k in high_ks}
+
+    k = 100
+
+    axes[0, 3].hist(k_high_plurality[k], bins=100, density=True, alpha=0.4, color='blue', zorder=-2)
+    axes[0, 3].set_title(f'Plurality, $k={k}$')
+
+    axes[1, 3].hist(k_high_irv[k], bins=100, density=True, alpha=0.4, color='green', zorder=-2)
+    axes[1, 3].set_title(f'IRV, $k={k}$')
+    axes[1, 3].axvline(1 / 6, ls='dashed', color='black', lw=1, zorder=0)
+    axes[1, 3].axvline(5 / 6, ls='dashed', color='black', lw=1, zorder=0)
+
+    plt.savefig('plots/k-3-4-5-100-winner-distributions-bars.pdf', bbox_inches='tight')
     plt.show()
     plt.close()
 
@@ -221,4 +239,4 @@ if __name__ == '__main__':
 
     plot_winner_intervals()
     plot_irv_plurality_scatter()
-    plot_k_3_4_5_winner_distributions()
+    plot_k_3_4_5_100_winner_distributions()
