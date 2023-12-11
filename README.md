@@ -2,7 +2,7 @@
 
 This repository accompanies the paper 
 
-> The Moderating Effect of Instant Runoff Voting <br> Kiran Tomlinson, Johan Ugander, and Jon Kleinberg <br> https://arxiv.org/abs/2303.09734
+> The Moderating Effect of Instant Runoff Voting <br> Kiran Tomlinson, Johan Ugander, and Jon Kleinberg <br> AAAI '24 <br> Extended version: https://arxiv.org/abs/2303.09734
 
 We have included all code for running simulations, all code for generating plots in the paper, and the results files from our simulations.
 
