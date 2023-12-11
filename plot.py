@@ -5,6 +5,11 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 from scipy import stats
+import matplotlib
+
+# Don't use Type 3 fonts
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 RESULTS_DIR = 'results/'
 
